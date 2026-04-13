@@ -9,7 +9,7 @@
 
 <body id="dashPage">
 
-  <!-- NAV -->
+  <!-- ===== NAV ===== -->
   <nav class="nav">
     <a href="index.html" class="logo">IRONCORE</a>
     <ul class="nav-links">
@@ -19,56 +19,52 @@
     </ul>
   </nav>
 
-  <!-- DASHBOARD -->
+  <!-- ===== DASHBOARD ===== -->
   <div class="dashboard">
 
-    <h1>
-      Welcome back, 
-      <span id="dashFirst">User</span> 💪
-    </h1>
-
-    <div class="profile">
-      <h2 id="dashName">Name</h2>
-      <p id="dashEmail">email@example.com</p>
-      <div id="dashAvatar">U</div>
+    <div class="dash-header">
+      <h1 class="dash-greeting">
+        Welcome back, 
+        <span id="dashFirst">Athlete</span> 💪
+      </h1>
+      <p class="dash-sub">Let’s crush today’s goals.</p>
     </div>
 
-    <button id="logoutBtn">Logout</button>
+    <!-- USER PROFILE -->
+    <div class="dash-card" style="margin-bottom:20px;">
+      <h3 style="margin-bottom:10px;">Profile</h3>
+      <h2 id="dashName">Name</h2>
+      <p id="dashEmail">email@example.com</p>
+      <div id="dashAvatar" style="
+        width:50px;height:50px;border-radius:50%;
+        background:orange;color:#000;
+        display:flex;align-items:center;justify-content:center;
+        font-weight:bold;margin-top:10px;">
+        U
+      </div>
+    </div>
+
+    <!-- PLAN INFO -->
+    <div class="dash-card">
+      <h3>Your Plan</h3>
+      <p id="dashPlan">Basic Plan</p>
+      <p>Status: <span id="dashStatus">Active</span></p>
+      <p>Member Since: <span id="dashSince">April 2026</span></p>
+
+      <button id="upgradeBtn" style="margin-top:10px;">
+        Upgrade Plan 🚀
+      </button>
+    </div>
+
+    <!-- LOGOUT -->
+    <div style="margin-top:30px;">
+      <button id="logoutBtn">Logout</button>
+    </div>
 
   </div>
 
+  <!-- ===== MAIN SCRIPT ONLY ===== -->
   <script src="script.js"></script>
-
-  <script>
-    // ===== GET USER =====
-    const user = JSON.parse(localStorage.getItem("loggedInUser"));
-
-    // ===== PROTECT PAGE =====
-    if (!user) {
-      window.location.href = "login.html";
-    }
-
-    // ===== SET USER DATA =====
-    if (user) {
-      document.getElementById("dashName").textContent = user.name;
-      document.getElementById("dashEmail").textContent = user.email;
-      document.getElementById("dashFirst").textContent = user.name;
-      document.getElementById("dashAvatar").textContent = user.name.charAt(0).toUpperCase();
-    }
-
-    // ===== LOGOUT BUTTON =====
-    document.getElementById("logoutBtn").addEventListener("click", function () {
-      localStorage.removeItem("loggedInUser");
-      window.location.href = "login.html";
-    });
-
-    // ===== NAV LOGOUT =====
-    document.getElementById("logoutLink").addEventListener("click", function (e) {
-      e.preventDefault();
-      localStorage.removeItem("loggedInUser");
-      window.location.href = "login.html";
-    });
-  </script>
 
 </body>
 </html>
